@@ -1,16 +1,11 @@
-// audio
-
-window.addEventListener('load', function() {
-
-    const audio = document.createElement('audio');
-    audio.src = './rain-sound.mp3'; 
-    audio.autoplay = true; 
-    audio.loop = true; 
-    audio.style.display = 'none'; 
-
-    document.body.appendChild(audio);
-
+window.addEventListener('load', () => {
+    const audio = document.getElementById('background-music');
     audio.play().catch(error => {
-      console.log('Autoplay is blocked. User interaction required:', error);
+      console.log('Autoplay failed. Attempting with user interaction.');
+    });
+
+    document.body.addEventListener('click', () => {
+      audio.muted = false;
+      audio.play();
     });
   });
